@@ -2,12 +2,12 @@ const caesarModule = (function () {
   const alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
   function caesar(input, shift, encode = true) {
     if (!shift || shift === 0 || shift < -25 || shift > 25) return false;
-    if (!encode) shift *= -1;
+    if (!encode) shift *= -1
+    // create variables
     let shiftedIndexArr = [];
     const letterAsIndexNumArr = [];
     const correctIndexNumArr = [];
     const lowerCaseInput = input.toLowerCase().split("");
-
     lowerCaseInput.forEach((inputLetter) => {
       if (!alphabet.includes(inputLetter)) {
         letterAsIndexNumArr.push(inputLetter);
@@ -19,7 +19,6 @@ const caesarModule = (function () {
         });
       }
     });
-
     letterAsIndexNumArr.forEach((letterIndex) => {
       if (typeof letterIndex === "number") {
         shiftedIndexArr.push(letterIndex + shift);
@@ -28,7 +27,6 @@ const caesarModule = (function () {
       }
       return shiftedIndexArr;
     });
-
     shiftedIndexArr.forEach((shiftedIndex) => {
       if (typeof shiftedIndex != "number") {
         correctIndexNumArr.push(shiftedIndex);
@@ -40,14 +38,9 @@ const caesarModule = (function () {
         correctIndexNumArr.push(shiftedIndex);
       }
     });
-
-    return correctIndexNumArr
-      .map((indexToLetter) => {
-        return typeof indexToLetter != "number"
-          ? indexToLetter
-          : alphabet[indexToLetter];
-      })
-      .join("");
+    return correctIndexNumArr.map((indexToLetter) => {
+        return typeof indexToLetter != "number" ? indexToLetter : alphabet[indexToLetter];
+      }).join("");
   }
   return {
     caesar,
